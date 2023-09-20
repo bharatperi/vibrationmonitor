@@ -13,7 +13,7 @@ import time
 
 # Azure IoT Hub
 URI = 'vibrationtest.azure-devices.net'
-KEY = '/99HeGpM6ZPFlkY7HMCyYS02NliZ2TpDuMMB5UilA7k='
+KEY = ''
 IOT_DEVICE_ID = 'TestNode1'
 POLICY = 'iothubowner'
 
@@ -83,14 +83,14 @@ def send_message(token, message):
     response = requests.post(url, data=data, headers=headers)
 
 if __name__ == '__main__':
-    # 1. Enable Temperature Sensor
+    # 1. Enable Sensor
     os.system('modprobe w1-gpio')
     os.system('modprobe w1-therm')
 
     # 2. Generate SAS Token
     token = generate_sas_token()
 
-    # 3. Send Temperature to IoT Hub
+    # 3. Send to IoT Hub
     while True:
         result = sensor()
         message = { "result": str(result) }
